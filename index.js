@@ -20,16 +20,32 @@ const userschema = mongoose.Schema({
 const user = mongoose.model("user",userschema);
 
 
-const user2 = new user({
-    name: "Avni",
-    email:"a@gmail.com",
-    age:17
-})
+user.insertMany([
+    {
+        name: "assh", email: "a@",age: 55
+    },
+    {
+        name: "peter", email: "a@",age: 5
 
-user2.save()
-.then((res=>{
+    },
+    {
+        name: "asd", email: "a@",age: 43
+    }
+]).then((res=>{
     console.log(res)
 }))
-.catch((err =>{
-    console.log(err)
-}));
+
+
+// const user2 = new user({
+//     name: "Avni",
+//     email:"a@gmail.com",
+//     age:17
+// })
+
+// user2.save()
+// .then((res=>{
+//     console.log(res)
+// }))
+// .catch((err =>{
+//     console.log(err)
+// }));
