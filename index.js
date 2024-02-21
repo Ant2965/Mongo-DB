@@ -1,13 +1,13 @@
-const mongoose =require("mongoose");
+const mongoose = require("mongoose");
 
 
 
-main().then(()=>{
+main().then(() => {
     console.log("connected")
 })
-.catch(err => console.log(err))
+    .catch(err => console.log(err))
 
-async function main(){
+async function main() {
     await mongoose.connect("mongodb://127.0.0.1:27017/ant");
 }
 
@@ -17,23 +17,29 @@ const userschema = mongoose.Schema({
     email: String,
     age: Number
 })
-const user = mongoose.model("user",userschema);
+const user = mongoose.model("user", userschema);
 
-
-user.insertMany([
-    {
-        name: "assh", email: "a@",age: 55
-    },
-    {
-        name: "peter", email: "a@",age: 5
-
-    },
-    {
-        name: "asd", email: "a@",age: 43
-    }
-]).then((res=>{
+user.findOne({ _id: "65d5fd5b7aca57d820c5b7d8" }).then((res) => {
     console.log(res)
-}))
+})
+    .catch((err => {
+        console.log(err)
+    }))
+
+// user.insertMany([
+//     {
+//         name: "assh", email: "a@",age: 55
+//     },
+//     {
+//         name: "peter", email: "a@",age: 5
+
+//     },
+//     {
+//         name: "asd", email: "a@",age: 43
+//     }
+// ]).then((res=>{
+//     console.log(res)
+// }))
 
 
 // const user2 = new user({
@@ -49,3 +55,20 @@ user.insertMany([
 // .catch((err =>{
 //     console.log(err)
 // }));
+
+
+// user.findOneAndUpdate({ name: "assh" }, { age: 60 }).then((res => {
+//     console.log(res);
+// }))
+
+//     .catch((err) => {
+//         console.log(err)
+//     })
+
+
+user.deleteOne({name:"assh"}).then(res=>{
+    console.log(res);
+})
+.catch((err)=>{
+    console.log(err)
+})
